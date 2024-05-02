@@ -26,6 +26,11 @@ import { configApiRef, useApi } from '@backstage/core-plugin-api';
 import { fetchWithCredentials, getRandomColor } from '../utils';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useTheme } from '@material-ui/core';
+//  Translation
+import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import { TimeSaverTranslationRef } from '../../translationRef';
+
+const { t } = useTranslationRef(TimeSaverTranslationRef);
 
 ChartJS.register(Title, Tooltip, ArcElement);
 
@@ -64,7 +69,7 @@ export function GroupDivisionPieChart(): React.ReactElement {
       },
       title: {
         display: true,
-        text: 'Team Percentage Distribution',
+        text: t('GroupDivisionPieChart.options.plugins.title'),
         color: theme.palette.text.primary,
       },
     },
