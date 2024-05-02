@@ -29,6 +29,11 @@ import { configApiRef, useApi } from '@backstage/core-plugin-api';
 import { fetchWithCredentials, getRandomColor } from '../utils';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useTheme } from '@material-ui/core';
+//  Translation
+import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import { TimeSaverTranslationRef } from '../../translationRef';
+
+const { t } = useTranslationRef(TimeSaverTranslationRef);
 
 ChartJS.register(LineElement, PointElement, Title, Tooltip, Legend);
 
@@ -89,7 +94,7 @@ export function DailyTimeSummaryLineChartTeamWise({
     plugins: {
       title: {
         display: true,
-        text: 'Daily Time Summary by Team',
+        text: t('DailyTimeSummaryLineChartTeamWise.options.plugins.title'),
         color: theme.palette.text.primary,
       },
     },
@@ -107,7 +112,7 @@ export function DailyTimeSummaryLineChartTeamWise({
           },
           scaleLabel: {
             display: true,
-            labelString: 'Date',
+            labelString: t('DailyTimeSummaryLineChartTeamWise.scales.x.labelString'),
           },
         },
       ] as unknown as ChartOptions<'line'>['scales'],
@@ -117,7 +122,7 @@ export function DailyTimeSummaryLineChartTeamWise({
           beginAtZero: true,
           scaleLabel: {
             display: true,
-            labelString: 'Total Time Saved',
+            labelString: t('DailyTimeSummaryLineChartTeamWise.scales.y.labelString'),
           },
         },
       ] as unknown as ChartOptions<'line'>['scales'],
