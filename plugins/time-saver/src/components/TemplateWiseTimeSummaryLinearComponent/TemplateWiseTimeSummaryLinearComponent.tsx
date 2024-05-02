@@ -28,6 +28,11 @@ import { configApiRef, useApi } from '@backstage/core-plugin-api';
 import { fetchWithCredentials, getRandomColor } from '../utils';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useTheme } from '@material-ui/core';
+//  Translation
+import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import { TimeSaverTranslationRef } from '../../translationRef';
+
+const { t } = useTranslationRef(TimeSaverTranslationRef);
 
 ChartJS.register(LineElement, PointElement, Title, Tooltip, Legend);
 
@@ -94,7 +99,7 @@ export function TemplateWiseTimeSummaryLinearChart({
     plugins: {
       title: {
         display: true,
-        text: 'Time Summary by Template',
+        text: t('TemplateWiseTimeSummaryLinearChart.options.plugins.title'),
         color: theme.palette.text.primary,
       },
     },
@@ -113,7 +118,7 @@ export function TemplateWiseTimeSummaryLinearChart({
           },
           scaleLabel: {
             display: true,
-            labelString: 'Date',
+            labelString: t('TemplateWiseTimeSummaryLinearChart.options.scales.x.labelString'),
           },
         },
       ] as unknown as ChartOptions<'line'>['scales'],
@@ -123,7 +128,7 @@ export function TemplateWiseTimeSummaryLinearChart({
           beginAtZero: true,
           scaleLabel: {
             display: true,
-            labelString: 'Total Time Saved',
+            labelString: t('TemplateWiseTimeSummaryLinearChart.options.scales.y.labelString'),
           },
         },
       ] as unknown as ChartOptions<'line'>['scales'],
