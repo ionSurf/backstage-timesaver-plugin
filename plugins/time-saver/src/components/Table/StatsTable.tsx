@@ -20,6 +20,11 @@ import { configApiRef, useApi } from '@backstage/core-plugin-api';
 import { DataGrid, GridColDef, GridSortModel } from '@mui/x-data-grid';
 import { fetchWithCredentials } from '../utils';
 import { useTheme, Paper } from '@material-ui/core';
+//  Translation
+import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import { TimeSaverTranslationRef } from '../../translationRef';
+
+const { t } = useTranslationRef(TimeSaverTranslationRef);
 
 type Stat = {
   id: string;
@@ -76,14 +81,14 @@ const StatsTable: React.FC<StatsTableProps> = ({ team, template_name }) => {
   }
 
   const columns: GridColDef[] = [
-    { field: 'team', headerName: 'Team', flex: 1, sortable: true },
+    { field: 'team', headerName: t('StatsTable.columns.team.headerName'), flex: 1, sortable: true },
     {
       field: 'template_name',
-      headerName: 'Template Name',
+      headerName: t('StatsTable.columns.template_name.headerName'),
       flex: 1,
       sortable: true,
     },
-    { field: 'sum', headerName: 'Sum', flex: 1, sortable: true },
+    { field: 'sum', headerName: t('StatsTable.columns.sum.headerName'), flex: 1, sortable: true },
   ].filter(col => data.some(row => !!row[col.field]));
 
   return (
