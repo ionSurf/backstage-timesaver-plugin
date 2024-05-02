@@ -28,6 +28,11 @@ import { configApiRef, useApi } from '@backstage/core-plugin-api';
 import { fetchWithCredentials, getRandomColor } from '../utils';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useTheme } from '@material-ui/core';
+//  Translation
+import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import { TimeSaverTranslationRef } from '../../translationRef';
+
+const { t } = useTranslationRef(TimeSaverTranslationRef);
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
@@ -62,7 +67,7 @@ export function AllStatsBarChart(): React.ReactElement {
     plugins: {
       title: {
         display: true,
-        text: 'All Statistics',
+        text: t('AllStatsBarChart.options.plugins.title'),
         color: theme.palette.text.primary,
       },
       legend: {
@@ -109,7 +114,7 @@ export function AllStatsBarChart(): React.ReactElement {
   const dataAll = {
     labels,
     datasets: datasets.map((templateName, index) => ({
-      label: `Time Saved - ${templateName}`,
+      label: `${t('AllStatsBarChart.dataAll.datasets.label')} - ${templateName}`,
       data: labels.map(team =>
         data.stats
           .filter(
