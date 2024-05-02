@@ -18,6 +18,11 @@ import { configApiRef, useApi } from '@backstage/core-plugin-api';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Gauge from './Gauge';
 import { fetchWithCredentials } from '../utils';
+//  Translation
+import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import { TimeSaverTranslationRef } from '../../translationRef';
+
+const { t } = useTranslationRef(TimeSaverTranslationRef);
 
 type TemplateTaskCountResponse = {
   templateTasks: number;
@@ -42,5 +47,5 @@ export function TemplateCountGauge(): React.ReactElement {
     return <CircularProgress />;
   }
 
-  return <Gauge number={data.templateTasks} heading="Template executions" />;
+  return <Gauge number={data.templateTasks} heading={t('Gauge.TemplateCountGauge.gaugeHeading')} />;
 }
