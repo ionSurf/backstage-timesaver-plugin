@@ -40,6 +40,11 @@ import { TimeSavedGauge } from '../Gauge/TimeSavedGauge';
 import { TeamsGauge } from '../Gauge/TeamsGauge';
 import { TemplatesGauge } from '../Gauge/TemplatesGauge';
 import { EmptyTimeSaver } from '../Gauge/EmptyDbContent';
+//  Translation
+import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import { TimeSaverTranslationRef } from '../../translationRef';
+
+const { t } = useTranslationRef(TimeSaverTranslationRef);
 
 export const TimeSaverPageComponent = () => {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -81,12 +86,12 @@ export const TimeSaverPageComponent = () => {
       </Grid>
       <Grid item xs={2}>
         <Paper elevation={0}>
-          <TimeSavedGauge heading="Time Saved [hours]" />
+          <TimeSavedGauge heading={t('TimeSaverPageComponent.GaugesContainer.hoursTimeSavedGauge')} />
         </Paper>
       </Grid>
       <Grid item xs={2}>
         <Paper elevation={0}>
-          <TimeSavedGauge number={8} heading="Time Saved [days]" />
+          <TimeSavedGauge number={8} heading={t('TimeSaverPageComponent.GaugesContainer.daysTimeSavedGauge')} />
         </Paper>
       </Grid>
       <Grid item xs={2}>
@@ -105,29 +110,27 @@ export const TimeSaverPageComponent = () => {
   return (
     <Page themeId="tool">
       <Header
-        title="Backstage TS plugin!"
-        subtitle="Check saved time with TS plugin!"
+        title={t('TimeSaverPageComponent.GaugesContainer.page.header.title')}
+        subtitle={t('TimeSaverPageComponent.GaugesContainer.page.header.subtitle')}
       >
-        <HeaderLabel label="Owner" value="Rackspace" />
-        <HeaderLabel label="Lifecycle" value="experimental" />
+        <HeaderLabel label={t('TimeSaverPageComponent.GaugesContainer.page.header.ownerHeaderLabel.label')} value="Rackspace" />
+        <HeaderLabel label={t('TimeSaverPageComponent.GaugesContainer.page.header.lifecycleHeaderLabel.label')} value="experimental" />
       </Header>
       <Content>
-        <ContentHeader title="Time Saver">
+        <ContentHeader title={t('TimeSaverPageComponent.GaugesContainer.page.content.header.title')}>
           <Tabs value={selectedTab} onChange={handleChange} centered={false}>
-            <Tab label="All Stats" />
-            <Tab label="By Team" />
-            <Tab label="By Template" />
+            <Tab label={t('TimeSaverPageComponent.GaugesContainer.page.content.header.tabs.allStatsTab.label')} />
+            <Tab label={t('TimeSaverPageComponent.GaugesContainer.page.content.header.tabs.byTeamTab.label')} />
+            <Tab label={t('TimeSaverPageComponent.GaugesContainer.page.content.header.tabs.byTemplateTab.label')} />
           </Tabs>
           <SupportButton>
-            Time Saver plugin retrieves its config from template.metadata and
-            groups it in a dedicated table, then it has a bunch of APIs for data
-            queries
+          {t('TimeSaverPageComponent.GaugesContainer.page.content.header.SupportButton')}
           </SupportButton>
         </ContentHeader>
         <EmptyTimeSaver />
         <Grid container spacing={3} direction="column">
           <Grid item>
-            <InfoCard title="Time statistics that you have saved using Backstage Templates">
+            <InfoCard title={t('TimeSaverPageComponent.GaugesContainer.page.content.body.InfoCard.title')}>
               <Typography variant="body1">
                 <Grid container spacing={3}>
                   <Grid item xs={12}>
