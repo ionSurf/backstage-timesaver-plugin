@@ -31,6 +31,11 @@ import { fetchWithCredentials, getRandomColor } from '../utils';
 ChartJS.register(LineElement, PointElement, Title, Tooltip, Legend);
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useTheme } from '@material-ui/core';
+//  Translation
+import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import { TimeSaverTranslationRef } from '../../translationRef';
+
+const { t } = useTranslationRef(TimeSaverTranslationRef);
 
 type TeamWiseTimeSummaryLinearResponse = {
   stats: {
@@ -93,7 +98,7 @@ export function TeamWiseTimeSummaryLinearChart({
     plugins: {
       title: {
         display: true,
-        text: 'Time Summary by Team',
+        text: t('TeamWiseTimeSummaryLinearChart.options.plugins.title'),
         color: theme.palette.text.primary,
       },
     },
@@ -112,7 +117,7 @@ export function TeamWiseTimeSummaryLinearChart({
           },
           scaleLabel: {
             display: true,
-            labelString: 'Date',
+            labelString: t('TeamWiseTimeSummaryLinearChart.scales.x.labelString'),
           },
         },
       ] as unknown as ChartOptions<'line'>['scales'],
@@ -122,7 +127,7 @@ export function TeamWiseTimeSummaryLinearChart({
           beginAtZero: true,
           scaleLabel: {
             display: true,
-            labelString: 'Total Time Saved',
+            labelString: t('TeamWiseTimeSummaryLinearChart.scales.y.labelString'),
           },
         },
       ] as unknown as ChartOptions<'line'>['scales'],
