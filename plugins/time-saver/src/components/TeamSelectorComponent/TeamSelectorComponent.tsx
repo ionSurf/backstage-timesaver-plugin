@@ -25,6 +25,11 @@ import {
   MenuItem,
 } from '@material-ui/core';
 import { fetchWithCredentials } from '../utils';
+//  Translation
+import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import { TimeSaverTranslationRef } from '../../translationRef';
+
+const { t } = useTranslationRef(TimeSaverTranslationRef);
 
 interface TeamSelectorProps {
   onTeamChange: (team: string) => void;
@@ -77,8 +82,8 @@ export default function TeamSelector({
   return (
     <Box style={{ minWidth: 360, display: 'flex', flexWrap: 'nowrap', gap: 6 }}>
       <FormControl fullWidth variant="outlined">
-        <InputLabel>Team</InputLabel>
-        <Select value={team} label="Team" onChange={handleChange}>
+        <InputLabel>{t('TeamSelector.formControl.inputLabel')}</InputLabel>
+        <Select value={team} label={t('TeamSelector.formControl.select.label')} onChange={handleChange}>
           {groups.map(group => (
             <MenuItem key={group} value={group}>
               {group}
