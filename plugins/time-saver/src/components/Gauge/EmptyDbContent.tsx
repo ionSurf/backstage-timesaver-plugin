@@ -25,6 +25,11 @@ import {
   TableRow,
 } from '@material-ui/core';
 import { fetchWithCredentials } from '../utils';
+//  Translation
+import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import { TimeSaverTranslationRef } from '../../translationRef';
+
+const { t } = useTranslationRef(TimeSaverTranslationRef);
 
 type TemplatesResponse = {
   templates: string[];
@@ -61,8 +66,7 @@ export function EmptyTimeSaver(): React.ReactElement {
         <TableBody>
           <TableRow>
             <TableCell style={cellStyle}>
-              Please fill your templates with data, they will be displayed after
-              their executions
+              { t('Gauge.EmptyTimeSaver.emptyData') }
             </TableCell>
           </TableRow>
         </TableBody>
