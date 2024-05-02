@@ -28,6 +28,11 @@ import { configApiRef, useApi } from '@backstage/core-plugin-api';
 import { fetchWithCredentials, getRandomColor } from '../utils';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useTheme } from '@material-ui/core';
+//  Translation
+import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import { TimeSaverTranslationRef } from '../../translationRef';
+
+const { t } = useTranslationRef(TimeSaverTranslationRef);
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
@@ -120,7 +125,7 @@ export function ByTeamBarChart({
     labels,
     datasets: [
       {
-        label: 'Time Saved',
+        label: t('ByTeamBarChart.dataAll.datasets.label'),
         data: datasets,
         backgroundColor: backgroundColors,
       },
