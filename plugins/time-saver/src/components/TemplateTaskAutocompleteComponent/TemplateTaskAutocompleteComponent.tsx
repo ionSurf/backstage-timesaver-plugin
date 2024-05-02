@@ -20,6 +20,11 @@ import { configApiRef, useApi } from '@backstage/core-plugin-api';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { fetchWithCredentials } from '../utils';
 import { TextField } from '@material-ui/core';
+//  Translation
+import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import { TimeSaverTranslationRef } from '../../translationRef';
+
+const { t } = useTranslationRef(TimeSaverTranslationRef);
 
 interface TemplateTaskChange {
   onTemplateTaskChange: (templateTask: string) => void;
@@ -69,7 +74,7 @@ export default function TemplateTaskAutocomplete({
       style={{ width: 500 }}
       onChange={handleChange}
       renderInput={params => (
-        <TextField {...params} variant="outlined" label="TemplateTaskId" />
+        <TextField {...params} variant="outlined" label={t('TemplateTaskAutocomplete.textField.label')} />
       )}
     />
   );
